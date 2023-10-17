@@ -7,9 +7,14 @@ import Modal from "./components/Modal";
 function App() {
   const [presupuesto, setPresupuesto] = useState(0);
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
-  const [modal, setModal] = useState(false); // modal es un estado que se usa para saber si el modal esta abierto o cerrado
+  const [modal, setModal] = useState(false);
+  const [animarModal, setAnimarModal] = useState(false); // modal es un estado que se usa para saber si el modal esta abierto o cerrado
   const handleNuevoGasto = () => {
     setModal(true);
+    setTimeout(() => {
+      setAnimarModal(true);
+      console.log("cerrando modal");
+    }, 3000);
   };
   // isValidPresupuesto es un estado que se usa para saber si el presupuesto es valido o no
   // setIsValidPresupuesto es una funcion que se usa para setear el estado de isValidPresupuesto
@@ -32,7 +37,7 @@ function App() {
           />
         </div>
       )}
-      {modal && <Modal setModal={setModal} />}
+      {modal && <Modal setModal={setModal} animarModal={animarModal} />}
     </>
   );
 }

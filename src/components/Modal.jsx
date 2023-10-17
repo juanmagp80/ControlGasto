@@ -1,6 +1,6 @@
 import Cerrar from "../img/cerrar.svg";
 import { useState } from "react";
-const Modal = ({ setModal }) => {
+const Modal = ({ setModal, animarModal }) => {
   const ocultarModal = () => {
     setModal(false);
   };
@@ -9,6 +9,9 @@ const Modal = ({ setModal }) => {
       <div className="cerrar-modal">
         <img src={Cerrar} alt="cerrar modal" onClick={ocultarModal} />
       </div>
+      <form className={`formulario ${animarModal ? "animar" : ""}`}>
+        <legend>Nuevo Gasto</legend>
+      </form>
     </div>
   );
 };
