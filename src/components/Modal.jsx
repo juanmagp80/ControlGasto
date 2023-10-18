@@ -1,6 +1,7 @@
 import Cerrar from "../img/cerrar.svg";
 import { useState, useEffect } from "react";
 import Mensaje from "./Mensaje";
+import { set } from "date-fns";
 
 const Modal = ({
   setModal,
@@ -13,12 +14,16 @@ const Modal = ({
   const [cantidad, setCantidad] = useState(0);
   const [categoria, setCategoria] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [id, setId] = useState("");
+  const [fecha, setFecha] = useState("");
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
       setNombre(gastoEditar.nombre);
       setCantidad(gastoEditar.cantidad);
       setCategoria(gastoEditar.categoria);
+      setId(gastoEditar.id);
+      setFecha(gastoEditar.fecha);
     }
   }, [gastoEditar]);
 
@@ -42,6 +47,7 @@ const Modal = ({
       nombre,
       cantidad,
       categoria,
+      id,
     });
     console.log("enviando formulario");
   };
@@ -54,7 +60,7 @@ const Modal = ({
         onSubmit={handleSubmit}
         className={`formulario ${animarModal ? "animar" : "cerrar"}`}
       >
-        <legend>Nuevo Gasto</legend>
+        <legend>{gastoEditar.nombre ? "Editar Gasto" : "Nuevo Gasto"}</legend>
         {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
         <div className="campo">
@@ -94,7 +100,11 @@ const Modal = ({
             <option value="suscripciones">Suscripciones</option>
           </select>
         </div>
-        <input className="boton" type="submit" />
+        <input
+          className="boton"
+          type="submit"
+          value={gastoEditar.nombre ? "Guardar Cambios" : "Añadir Gasto"}
+        />
       </form>
     </div>
   );

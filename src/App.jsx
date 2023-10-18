@@ -42,11 +42,18 @@ function App() {
   // gasto.id es un numero que se usa para identificar los gastos
   // gasto.nombre es un string que se usa para guardar el nombre del gasto
   const guardarGastos = (gasto) => {
-    gasto.id = generarId();
-    // fecha actual
-    gasto.cantidad = Number(gasto.cantidad);
-    gasto.categoria = gasto.categoria.toLowerCase();
-    setGastos([...gastos, gasto]);
+    if (gasto.id) {
+      //actualizar gasto
+      const gastosActualizados = gastos.map((gastoActual) =>
+        gastoActual.id === gasto.id ? gasto : gastoActual
+      );
+      setGastos(gastosActualizados);
+    } else {
+      gasto.id = generarId();
+      gasto.cantidad = Number(gasto.cantidad);
+      setGastos([...gastos, gasto]);
+    }
+
     setAnimarModal(false);
     setTimeout(() => {
       setModal(false);
