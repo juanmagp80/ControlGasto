@@ -9,7 +9,7 @@ import ListadoGastos from "./components/ListadoGastos";
 import { format, formatDistance, formatRelative, set, subDays } from "date-fns";
 
 function App() {
-  const [presupuesto, setPresupuesto] = useState(0);
+  const [presupuesto, setPresupuesto] = useState('');
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
   const [modal, setModal] = useState(false);
   const [animarModal, setAnimarModal] = useState(false);
