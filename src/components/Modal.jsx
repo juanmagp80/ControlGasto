@@ -9,6 +9,7 @@ const Modal = ({
   setAnimarModal,
   guardarGastos,
   gastoEditar,
+  setGastoEditar,
 }) => {
   const [nombre, setNombre] = useState("");
   const [cantidad, setCantidad] = useState(0);
@@ -31,6 +32,7 @@ const Modal = ({
     setAnimarModal(false);
     setTimeout(() => {
       setModal(false);
+      setGastoEditar({});
     }, 500);
   };
   const handleSubmit = (e) => {

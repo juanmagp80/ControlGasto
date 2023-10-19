@@ -9,14 +9,14 @@ import {
 import "react-swipeable-list/dist/styles.css";
 
 import { formatearFecha } from "../helpers";
+
 import IconoAhorro from "../img/icono_ahorro.svg";
-import IconoComida from "../img/icono_comida.svg";
 import IconoCasa from "../img/icono_casa.svg";
+import IconoComida from "../img/icono_comida.svg";
 import IconoGastos from "../img/icono_gastos.svg";
 import IconoOcio from "../img/icono_ocio.svg";
 import IconoSalud from "../img/icono_salud.svg";
 import IconoSuscripciones from "../img/icono_suscripciones.svg";
-import { set } from "date-fns";
 
 const diccionarioIconos = {
   ahorro: IconoAhorro,
@@ -28,25 +28,19 @@ const diccionarioIconos = {
   suscripciones: IconoSuscripciones,
 };
 
-// gasto es un objeto que se usa para guardar los gastos
-// gasto.id es un numero que se usa para identificar los gastos
-// gasto.nombre es un string que se usa para guardar el nombre del gasto
-const Gasto = ({ gasto, setGastoEditar, setGastoBorrar, gastoBorrar }) => {
-  const { categoria, cantidad, nombre, id, fecha } = gasto;
-  // leadingActions es una funcion que se usa para renderizar los botones de editar y borrar
-  // trailingActions es una funcion que se usa para renderizar los botones de editar y borrar
+const Gasto = ({ gasto, setGastoEditar, eliminarGasto }) => {
+  const { categoria, nombre, cantidad, id, fecha } = gasto;
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction destructive={true} onClick={() => setGastoEditar(gasto)}>
-        Editar
-      </SwipeAction>
+      <SwipeAction onClick={() => setGastoEditar(gasto)}>Editar</SwipeAction>
     </LeadingActions>
   );
+
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction destructive={true} onClick={() => setGastoBorrar(gasto)}>
-        Borrar
+      <SwipeAction onClick={() => eliminarGasto(id)} destructive={true}>
+        Eliminar
       </SwipeAction>
     </TrailingActions>
   );
@@ -59,17 +53,17 @@ const Gasto = ({ gasto, setGastoEditar, setGastoBorrar, gastoBorrar }) => {
       >
         <div className="gasto sombra">
           <div className="contenido-gasto">
-            <img src={diccionarioIconos[categoria]} alt="icono gasto" />
+            <img src={diccionarioIconos[categoria]} alt="Icono Gasto" />
             <div className="descripcion-gasto">
               <p className="categoria">{categoria}</p>
               <p className="nombre-gasto">{nombre}</p>
-
               <p className="fecha-gasto">
-                Agregado el: {""} <span>{formatearFecha(fecha)}</span>
+                Agregado el: {""}
+                <span>{formatearFecha(fecha)}</span>
               </p>
             </div>
           </div>
-          <p className="cantidad-gasto">€{cantidad}</p>
+          <p className="cantidad-gasto">${cantidad}</p>
         </div>
       </SwipeableListItem>
     </SwipeableList>
