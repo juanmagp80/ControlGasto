@@ -12,7 +12,7 @@ const Modal = ({
   setGastoEditar,
 }) => {
   const [nombre, setNombre] = useState("");
-  const [cantidad, setCantidad] = useState(0);
+  const [cantidad, setCantidad] = useState('');
   const [categoria, setCategoria] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [id, setId] = useState("");

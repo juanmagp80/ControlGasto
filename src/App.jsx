@@ -7,6 +7,7 @@ import { generarId } from "./helpers";
 import IconoNuevoGasto from "./img/nuevo-gasto.svg";
 
 function App() {
+<<<<<<< HEAD
   const [gastos, setGastos] = useState(
     localStorage.getItem("gastos")
       ? JSON.parse(localStorage.getItem("gastos"))
@@ -17,6 +18,9 @@ function App() {
     Number(localStorage.getItem("presupuesto")) ?? 0
   );
 
+=======
+  const [presupuesto, setPresupuesto] = useState('');
+>>>>>>> f9a76e2eab24b82a1128d46afc07c52352e131c6
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
 
   const [modal, setModal] = useState(false);
